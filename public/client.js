@@ -11,9 +11,11 @@ messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     // Obtener el mensaje del campo de entrada
     const message = messageInput.value;
+    console.log(message);
     // Verificar si el mensaje no está vacío antes de enviarlo
     if (message.trim() !== '') {
         // Enviar el mensaje al servidor a través del socket WebSocket
+        //socket.send(JSON.stringify(message));
         socket.send(message);
         // Mostrar el mensaje enviado por el propio cliente en la ventana del chat
         displayMessage(`Tú: ${message}`);
@@ -26,6 +28,7 @@ messageForm.addEventListener('submit', (event) => {
 socket.addEventListener('message', (event) => {
     // Obtener el mensaje del evento y mostrarlo en la ventana del chat
     const message = event.data;
+    console.log("resuado event: ", event);
     displayMessage(message);
 });
 

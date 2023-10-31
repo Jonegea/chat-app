@@ -19,10 +19,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 wss.on('connection', (ws) => {
     // Cuando el servidor recibe un mensaje de un cliente
     ws.on('message', (message) => {
+        console.log("Mensaje :", message);
         // Retransmitir el mensaje a todos los clientes conectados
         wss.clients.forEach((client) => {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(message);
+                client.send(message.toString());
             }
         });
     });
